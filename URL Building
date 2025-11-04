@@ -1,0 +1,31 @@
+const express = require("express");
+const app = express();
+
+app.get("/", (req, res) => {
+res.send("23A91A61I1 <br> Welcome To the Home Page");
+});
+
+app.get("/user/:id", (req, res) => {
+const userId = req.params.id;
+res.send(`User ID Received: ${userId}`);
+});
+
+app.get("/product/:id/:name", (req, res) => {
+const { id, name } = req.params;
+res.send(`Product ID: ${id}, Product Name: ${name}`);
+});
+
+app.get("/search", (req, res) => {
+const keyword = req.query.keyword;
+const limit = req.query.limit;
+res.send(`Searching for: ${keyword}, Limit: ${limit}`);
+});
+
+app.get("/url-info", (req, res) => {
+const fullUrl = req.protocol + "://" + req.get("host") + req.originalUrl;
+res.send(`Full URL: ${fullUrl}`);
+});
+
+app.listen(4000, () => {
+console.log("Server is running on port 4000");
+}); 
