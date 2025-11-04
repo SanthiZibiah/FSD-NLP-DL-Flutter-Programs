@@ -1,0 +1,35 @@
+!pip install nltk
+import nltk
+nltk.download('stopwords')
+nltk.download('punkt_tab')
+# program A
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+text = " How to remove stopwords with NLTK library in python"
+print("Text:", text)
+tokens = word_tokenize(text.lower())
+print("Tokens:", tokens)
+english_stopwords = stopwords.words('english')
+tokens_wo_stopwords = [token for token in tokens if token not in english_stopwords]
+print("Text without stop words:", " ".join(tokens_wo_stopwords))
+
+# Program B
+#Add or remove words from your list of stop words
+from nltk.corpus import stopwords
+from nltk.tokenize import word_tokenize
+english_stopwords = stopwords.words('english')
+english_stopwords.extend(['food', 'meal', 'eat'])
+english_stopwords.append('plate')
+english_stopwords.remove('not')
+print(english_stopwords)
+
+#Program C
+"NLTK's stop words corpus is that there are stop words in 16 different languages."
+from nltk.corpus import stopwords
+print(stopwords.fileids())
+french_stopwords = stopwords.words('french')
+spanish_stopwords = stopwords.words('spanish')
+italian_stopwords = stopwords.words('italian')
+print(french_stopwords)
+print(spanish_stopwords)
+print(italian_stopwords)
