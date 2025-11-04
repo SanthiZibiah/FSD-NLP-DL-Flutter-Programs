@@ -1,0 +1,28 @@
+import 'package:flutter/material.dart';
+void main() => runApp(MaterialApp(home: SimpleAnimation()));
+class SimpleAnimation extends StatefulWidget{
+ @override
+ _SimpleAnimationState createState() =>
+ _SimpleAnimationState();
+}
+class _SimpleAnimationState extends State<SimpleAnimation> {
+ bool big = false; //one flag handles both size and colour
+
+ @override
+ Widget build(BuildContext context){
+ return Scaffold(
+ body: Center(
+ child: AnimatedContainer(
+ width: big ? 200 :100,
+ height: big ? 200 :100,
+ color: big ? Colors.orange : Colors.blue,
+ duration: const Duration(seconds : 1),
+ ),
+ ),
+ floatingActionButton: FloatingActionButton(
+ onPressed: () => setState(() => big = !big),
+ child: const Icon(Icons.play_arrow),
+ ),
+ );
+ }
+}
