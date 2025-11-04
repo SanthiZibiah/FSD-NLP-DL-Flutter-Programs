@@ -1,0 +1,44 @@
+import 'package:flutter/material.dart';
+void main() => runApp(MaterialApp(home: SimpleAnimation()));
+class SimpleAnimation extends StatefulWidget {
+ @override
+ _SimpleAnimationState createState() => _SimpleAnimationState();
+}
+class _SimpleAnimationState extends State<SimpleAnimation> {
+ bool on = false; // one flag controls everything
+ @override
+ Widget build(BuildContext context) {
+ return Scaffold(
+ body: Center(
+ child: Column(
+ mainAxisAlignment: MainAxisAlignment.center,
+ children: [
+ AnimatedOpacity(
+ opacity: on ? 1 : 0,
+ duration: const Duration(seconds: 1),
+ child: _box(Colors.blue),
+ ),
+ const SizedBox(height: 20),
+ AnimatedSlide(
+ offset: on ? Offset.zero : const Offset(-1, 0),
+ duration: const Duration(seconds: 1),
+ child: _box(Colors.green),
+ ),
+ const SizedBox(height: 20),
+ AnimatedScale(
+ scale: on ? 1 : 0.5,
+ duration: const Duration(seconds: 1),
+ child: _box(Colors.orange),
+ ),
+ ],
+ ),
+ ),
+ floatingActionButton: FloatingActionButton(
+onPressed: () => setState(() => on = !on),
+ child: const Icon(Icons.play_arrow),
+ ),
+ );
+ }
+ Widget _box(Color c) => Container(
+ width: 80, height: 80, color: c);
+}
